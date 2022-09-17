@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt')
 exports.login = async (req, res) => {
 
     try {
-        const { email, password } = req.body
-        const user = await User.findOne({ email: email });
+        const { username, password } = req.query
+        const user = await User.findOne({ username: username });
         if (user) {
             const validPassword = await bcrypt.compare(password, user.password);
             if (validPassword) {
